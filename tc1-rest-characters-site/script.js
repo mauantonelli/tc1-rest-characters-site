@@ -4,9 +4,14 @@ document.addEventListener('DOMContentLoaded', function() {
     form.addEventListener('submit', function(event) {
         event.preventDefault();
 
-        const name = document.getElementById('name').value;
-        const className = document.getElementById('class').value;
-        const level = document.getElementById('level').value;
+        const name = document.getElementById('name').value.trim();
+        const className = document.getElementById('class').value.trim();
+        const level = document.getElementById('level').value.trim();
+
+        if (name === '' || className === '' || level === '') {
+            alert('Todos os campos são obrigatórios.');
+            return;
+        }
 
         const character = {
             name,
@@ -15,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
         };
 
         saveCharacter(character);
+        alert(`Personagem ${name} cadastrado com sucesso!`);
         form.reset();
     });
 
