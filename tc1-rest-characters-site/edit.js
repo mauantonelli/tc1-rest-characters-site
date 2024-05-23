@@ -15,10 +15,15 @@ document.addEventListener('DOMContentLoaded', function() {
     form.addEventListener('submit', function(event) {
         event.preventDefault();
 
-        const name = document.getElementById('name').value;
-        const className = document.getElementById('class').value;
-        const level = document.getElementById('level').value;
+        const name = document.getElementById('name').value.trim();
+        const className = document.getElementById('class').value.trim();
+        const level = document.getElementById('level').value.trim();
         const index = document.getElementById('index').value;
+
+        if (name === '' || className === '' || level === '') {
+            alert('Todos os campos são obrigatórios.');
+            return;
+        }
 
         const character = {
             name,
@@ -26,10 +31,8 @@ document.addEventListener('DOMContentLoaded', function() {
             level
         };
 
-        if (index !== null) {
-            updateCharacter(character, index);
-        }
-
+        updateCharacter(character, index);
+        alert(`Personagem ${name} atualizado com sucesso!`);
         window.location.href = 'lista.html';
     });
 
