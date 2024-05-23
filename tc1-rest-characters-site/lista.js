@@ -2,10 +2,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const characterList = document.getElementById('character-list');
 
     function deleteCharacter(index) {
-        let characters = JSON.parse(localStorage.getItem('characters')) || [];
-        characters.splice(index, 1);
-        localStorage.setItem('characters', JSON.stringify(characters));
-        renderCharacterList();
+        const confirmDelete = confirm('Você tem certeza que deseja excluir este personagem?');
+        if (confirmDelete) {
+            let characters = JSON.parse(localStorage.getItem('characters')) || [];
+            characters.splice(index, 1);
+            localStorage.setItem('characters', JSON.stringify(characters));
+            renderCharacterList();
+            alert('Personagem excluído com sucesso!');
+        }
     }
 
     function editCharacter(index) {
@@ -28,6 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Make functions global
     window.editCharacter = editCharacter;
     window.deleteCharacter = deleteCharacter;
 
