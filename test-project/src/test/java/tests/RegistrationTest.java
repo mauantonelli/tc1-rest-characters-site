@@ -46,6 +46,17 @@ public class RegistrationTest {
         driver.switchTo().alert().accept();
     }
 
+    @Test
+    public void testRegistrationWithEmptyClass() {
+        homePage.enterName("Jane Doe");
+        homePage.enterClass("");
+        homePage.enterLevel("5");
+        homePage.submitForm();
+
+        assertThat(driver.switchTo().alert().getText()).contains("Todos os campos são obrigatórios.");
+        driver.switchTo().alert().accept();
+    }
+
     @AfterEach
     public void tearDown() {
         if (driver != null) {
