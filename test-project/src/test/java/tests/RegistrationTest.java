@@ -79,6 +79,25 @@ public class RegistrationTest {
         driver.switchTo().alert().accept();
     }
 
+    @Test
+    public void testRegistrationWithDifferentClassesAndLevels() {
+        homePage.enterName("Character One");
+        homePage.enterClass("Mage");
+        homePage.enterLevel("5");
+        homePage.submitForm();
+
+        assertThat(driver.switchTo().alert().getText()).contains("Personagem Character One cadastrado com sucesso!");
+        driver.switchTo().alert().accept();
+
+        homePage.enterName("Character Two");
+        homePage.enterClass("Rogue");
+        homePage.enterLevel("8");
+        homePage.submitForm();
+
+        assertThat(driver.switchTo().alert().getText()).contains("Personagem Character Two cadastrado com sucesso!");
+        driver.switchTo().alert().accept();
+    }
+
     @AfterEach
     public void tearDown() {
         if (driver != null) {
