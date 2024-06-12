@@ -17,8 +17,8 @@ public class RegistrationTest {
 
     @BeforeEach
     public void setUp() {
-        WebDriverManager.edgedriver().setup();
-        driver = new EdgeDriver();
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
         homePage = new HomePage(driver);
         driver.get("https://tc1-rest-characters-site-m5ee.vercel.app");
     }

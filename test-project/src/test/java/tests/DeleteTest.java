@@ -50,6 +50,15 @@ public class DeleteTest {
         assertThat(listPage.isCharacterListEmpty()).isTrue();
     }
 
+    @Test
+    public void testDeleteNonExistingCharacter() {
+        try {
+            listPage.deleteCharacter(1);
+        } catch (IndexOutOfBoundsException e) {
+            assertThat(e).isInstanceOf(IndexOutOfBoundsException.class);
+        }
+    }
+
     @AfterEach
     public void tearDown() {
         if (driver != null) {

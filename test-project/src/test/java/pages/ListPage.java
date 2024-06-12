@@ -27,4 +27,6 @@ public class ListPage {
     public boolean isCharacterListEmpty() {
         return driver.findElements(By.cssSelector(".delete")).isEmpty();
     }
+
+
 }
