@@ -3,10 +3,10 @@ package tests;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.edge.EdgeDriver;
 import pages.HomePage;
 import pages.ListPage;
 
@@ -34,6 +34,7 @@ public class DeleteTest {
     }
 
     @Test
+    @DisplayName("Delete Character and Verify Success Alert")
     public void testDeleteCharacter() {
         listPage.deleteCharacter(0);
 
@@ -42,6 +43,7 @@ public class DeleteTest {
     }
 
     @Test
+    @DisplayName("Delete Character and Verify List is Empty")
     public void testDeleteCharacterAndVerifyListIsEmpty() {
         listPage.deleteCharacter(0);
 
@@ -51,6 +53,7 @@ public class DeleteTest {
     }
 
     @Test
+    @DisplayName("Attempt to Delete Non-Existing Character")
     public void testDeleteNonExistingCharacter() {
         try {
             listPage.deleteCharacter(1);
@@ -60,11 +63,11 @@ public class DeleteTest {
     }
 
     @Test
+    @DisplayName("Delete Multiple Characters and Verify List is Empty")
     public void testDeleteMultipleCharacters() {
-        homePage.viewInsertCharacter();
-        homePage.enterName("Doe John");
-        homePage.enterClass("Rogue");
-        homePage.enterLevel("3");
+        homePage.enterName("Jane Doe");
+        homePage.enterClass("Mage");
+        homePage.enterLevel("5");
         homePage.submitForm();
         driver.switchTo().alert().accept();
         homePage.viewCharacterList();
