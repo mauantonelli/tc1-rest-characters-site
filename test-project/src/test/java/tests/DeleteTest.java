@@ -5,6 +5,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import pages.HomePage;
 import pages.ListPage;
@@ -18,8 +19,8 @@ public class DeleteTest {
 
     @BeforeEach
     public void setUp() {
-        WebDriverManager.edgedriver().setup();
-        driver = new EdgeDriver();
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
         homePage = new HomePage(driver);
         listPage = new ListPage(driver);
         driver.get("https://tc1-rest-characters-site-m5ee.vercel.app");
@@ -38,6 +39,15 @@ public class DeleteTest {
 
         assertThat(driver.switchTo().alert().getText()).contains("Personagem excluído com sucesso!");
         driver.switchTo().alert().accept();
+    }
+
+    @Test
+    public void testDeleteCharacterAndVerifyListIsEmpty() {
+        listPage.deleteCharacter(0);
+
+        assertThat(driver.switchTo().alert().getText()).contains("Personagem excluído com sucesso!");
+        driver.switchTo().alert().accept();
+        assertThat(listPage.isCharacterListEmpty()).isTrue();
     }
 
     @AfterEach

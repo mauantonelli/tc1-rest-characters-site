@@ -23,4 +23,8 @@ public class ListPage {
         driver.findElements(By.cssSelector(".delete")).get(index).click();
         driver.switchTo().alert().accept();
     }
+
+    public boolean isCharacterListEmpty() {
+        return driver.findElements(By.cssSelector(".delete")).isEmpty();
+    }
 }
