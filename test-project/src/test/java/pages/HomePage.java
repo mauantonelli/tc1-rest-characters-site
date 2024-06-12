@@ -10,6 +10,7 @@ public class HomePage {
     private By levelField = By.id("level");
     private By submitButton = By.cssSelector("button[type='submit']");
     private By viewListButton = By.xpath("//button[contains(text(),'Ver Lista de Personagens')]");
+    private By viewInsertButton = By.xpath("//button[contains(text(),'Voltar para Cadastro')]");
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
@@ -33,5 +34,8 @@ public class HomePage {
 
     public void viewCharacterList() {
         driver.findElement(viewListButton).click();
+    }
+    public void viewInsertCharacter() {
+        driver.findElement(viewInsertButton).click();
     }
 }

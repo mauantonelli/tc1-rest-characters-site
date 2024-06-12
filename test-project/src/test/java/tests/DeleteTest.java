@@ -59,6 +59,27 @@ public class DeleteTest {
         }
     }
 
+    @Test
+    public void testDeleteMultipleCharacters() {
+        homePage.viewInsertCharacter();
+        homePage.enterName("Doe John");
+        homePage.enterClass("Rogue");
+        homePage.enterLevel("3");
+        homePage.submitForm();
+        driver.switchTo().alert().accept();
+        homePage.viewCharacterList();
+
+        listPage.deleteCharacter(0);
+        assertThat(driver.switchTo().alert().getText()).contains("Personagem excluído com sucesso!");
+        driver.switchTo().alert().accept();
+
+        listPage.deleteCharacter(0);
+        assertThat(driver.switchTo().alert().getText()).contains("Personagem excluído com sucesso!");
+        driver.switchTo().alert().accept();
+
+        assertThat(listPage.isCharacterListEmpty()).isTrue();
+    }
+
     @AfterEach
     public void tearDown() {
         if (driver != null) {
