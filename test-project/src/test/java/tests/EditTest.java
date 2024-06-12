@@ -46,6 +46,17 @@ public class EditTest {
         driver.switchTo().alert().accept();
     }
 
+    @Test
+    public void testEditCharacterWithEmptyClass() {
+        listPage.editCharacter(0);
+        editPage.enterName("Jane Smith");
+        editPage.enterClass("");
+        editPage.enterLevel("6");
+        editPage.submitForm();
+
+        assertThat(driver.switchTo().alert().getText()).contains("Todos os campos são obrigatórios.");
+        driver.switchTo().alert().accept();
+    }
 
     @Test
     public void testEditCharacter() {
@@ -58,6 +69,8 @@ public class EditTest {
         assertThat(driver.switchTo().alert().getText()).contains("Personagem Jane Smith atualizado com sucesso!");
         driver.switchTo().alert().accept();
     }
+
+
 
     @AfterEach
     public void tearDown() {
