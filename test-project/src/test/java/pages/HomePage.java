@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class HomePage {
     private WebDriver driver;
@@ -35,7 +36,12 @@ public class HomePage {
     public void viewCharacterList() {
         driver.findElement(viewListButton).click();
     }
+
     public void viewInsertCharacter() {
         driver.findElement(viewInsertButton).click();
+    }
+
+    public WebElement getViewCharacterListButton() {
+        return driver.findElement(viewListButton);
     }
 }
