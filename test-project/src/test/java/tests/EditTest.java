@@ -1,7 +1,9 @@
 package tests;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -35,6 +37,7 @@ public class EditTest {
     }
 
     @Test
+    @DisplayName("Edit Character with Empty Name")
     public void testEditCharacterWithEmptyName() {
         listPage.editCharacter(0);
         editPage.enterName("");
@@ -47,6 +50,7 @@ public class EditTest {
     }
 
     @Test
+    @DisplayName("Edit Character with Empty Class")
     public void testEditCharacterWithEmptyClass() {
         listPage.editCharacter(0);
         editPage.enterName("Jane Smith");
@@ -59,6 +63,7 @@ public class EditTest {
     }
 
     @Test
+    @DisplayName("Edit Character with Empty Level")
     public void testEditCharacterWithEmptyLevel() {
         listPage.editCharacter(0);
         editPage.enterName("Jane Smith");
@@ -71,6 +76,7 @@ public class EditTest {
     }
 
     @Test
+    @DisplayName("Edit Character with Invalid Level")
     public void testEditCharacterWithInvalidLevel() {
         listPage.editCharacter(0);
         editPage.enterName("Jane Smith");
@@ -82,6 +88,7 @@ public class EditTest {
         driver.switchTo().alert().accept();
     }
     @Test
+    @DisplayName("Edit Character with Same Name, Class, and Level")
     public void testEditCharacterWithSameNameClassLevel() {
         listPage.editCharacter(0);
         editPage.enterName("Jane Doe");
@@ -94,6 +101,7 @@ public class EditTest {
     }
 
     @Test
+    @DisplayName("Edit the Same Character Multiple Times")
     public void testEditSameCharacterMultipleTimes() {
         listPage.editCharacter(0);
         editPage.enterName("First Edit");
@@ -119,6 +127,7 @@ public class EditTest {
         driver.switchTo().alert().accept();
     }
     @Test
+    @DisplayName("Edit Character Successfully")
     public void testEditCharacter() {
         listPage.editCharacter(0);
         editPage.enterName("Jane Smith");
@@ -129,8 +138,6 @@ public class EditTest {
         assertThat(driver.switchTo().alert().getText()).contains("Personagem Jane Smith atualizado com sucesso!");
         driver.switchTo().alert().accept();
     }
-
-
 
     @AfterEach
     public void tearDown() {
