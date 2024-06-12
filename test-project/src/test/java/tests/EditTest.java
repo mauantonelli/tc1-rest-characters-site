@@ -92,6 +92,32 @@ public class EditTest {
         assertThat(driver.switchTo().alert().getText()).contains("Personagem Jane Doe atualizado com sucesso!");
         driver.switchTo().alert().accept();
     }
+
+    @Test
+    public void testEditSameCharacterMultipleTimes() {
+        listPage.editCharacter(0);
+        editPage.enterName("First Edit");
+        editPage.enterClass("Warrior");
+        editPage.enterLevel("10");
+        editPage.submitForm();
+        driver.switchTo().alert().accept();
+
+        listPage.editCharacter(0);
+        editPage.enterName("Second Edit");
+        editPage.enterClass("Rogue");
+        editPage.enterLevel("8");
+        editPage.submitForm();
+        driver.switchTo().alert().accept();
+
+        listPage.editCharacter(0);
+        editPage.enterName("Third Edit");
+        editPage.enterClass("Paladin");
+        editPage.enterLevel("15");
+        editPage.submitForm();
+
+        assertThat(driver.switchTo().alert().getText()).contains("Personagem Third Edit atualizado com sucesso!");
+        driver.switchTo().alert().accept();
+    }
     @Test
     public void testEditCharacter() {
         listPage.editCharacter(0);
