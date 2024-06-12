@@ -3,10 +3,10 @@ package tests;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.edge.EdgeDriver;
 import pages.HomePage;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -24,7 +24,8 @@ public class RegistrationTest {
     }
 
     @Test
-    public void testSuccessfulRegistration(){
+    @DisplayName("Successful Registration")
+    public void testSuccessfulRegistration() {
         homePage.enterName("John Doe");
         homePage.enterClass("Warrior");
         homePage.enterLevel("10");
@@ -32,10 +33,10 @@ public class RegistrationTest {
 
         assertThat(driver.switchTo().alert().getText()).contains("Personagem John Doe cadastrado com sucesso!");
         driver.switchTo().alert().accept();
-
     }
 
     @Test
+    @DisplayName("Registration with Empty Name")
     public void testRegistrationWithEmptyName() {
         homePage.enterName("");
         homePage.enterClass("Warrior");
@@ -47,6 +48,7 @@ public class RegistrationTest {
     }
 
     @Test
+    @DisplayName("Registration with Empty Class")
     public void testRegistrationWithEmptyClass() {
         homePage.enterName("Jane Doe");
         homePage.enterClass("");
@@ -58,6 +60,7 @@ public class RegistrationTest {
     }
 
     @Test
+    @DisplayName("Registration with Empty Level")
     public void testRegistrationWithEmptyLevel() {
         homePage.enterName("Jane Doe");
         homePage.enterClass("Mage");
@@ -69,6 +72,7 @@ public class RegistrationTest {
     }
 
     @Test
+    @DisplayName("Registration with Invalid Level")
     public void testRegistrationWithInvalidLevel() {
         homePage.enterName("Invalid Level");
         homePage.enterClass("Mage");
@@ -80,6 +84,7 @@ public class RegistrationTest {
     }
 
     @Test
+    @DisplayName("Registration with Different Classes and Levels")
     public void testRegistrationWithDifferentClassesAndLevels() {
         homePage.enterName("Character One");
         homePage.enterClass("Mage");
