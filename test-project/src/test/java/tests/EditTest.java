@@ -81,7 +81,17 @@ public class EditTest {
         assertThat(driver.switchTo().alert().getText()).contains("Todos os campos são obrigatórios.");
         driver.switchTo().alert().accept();
     }
+    @Test
+    public void testEditCharacterWithSameNameClassLevel() {
+        listPage.editCharacter(0);
+        editPage.enterName("Jane Doe");
+        editPage.enterClass("Mage");
+        editPage.enterLevel("5");
+        editPage.submitForm();
 
+        assertThat(driver.switchTo().alert().getText()).contains("Personagem Jane Doe atualizado com sucesso!");
+        driver.switchTo().alert().accept();
+    }
     @Test
     public void testEditCharacter() {
         listPage.editCharacter(0);
