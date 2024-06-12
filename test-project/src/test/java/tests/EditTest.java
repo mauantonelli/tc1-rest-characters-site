@@ -59,6 +59,19 @@ public class EditTest {
     }
 
     @Test
+    public void testEditCharacterWithEmptyLevel() {
+        listPage.editCharacter(0);
+        editPage.enterName("Jane Smith");
+        editPage.enterClass("Sorcerer");
+        editPage.enterLevel("");
+        editPage.submitForm();
+
+        assertThat(driver.switchTo().alert().getText()).contains("Todos os campos são obrigatórios.");
+        driver.switchTo().alert().accept();
+    }
+
+
+    @Test
     public void testEditCharacter() {
         listPage.editCharacter(0);
         editPage.enterName("Jane Smith");
