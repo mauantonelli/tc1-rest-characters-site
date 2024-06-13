@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 public class ListPage {
     private WebDriver driver;
     private By characterList = By.id("character-list");
+    private By returnButton = new By.ByClassName("button");
 
     public ListPage(WebDriver driver) {
         this.driver = driver;
@@ -28,5 +29,7 @@ public class ListPage {
         return driver.findElements(By.cssSelector(".delete")).isEmpty();
     }
 
-
+    public void returnToHomePage(){
+        driver.findElement(returnButton).click();
+    }
 }
