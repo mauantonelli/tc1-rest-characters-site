@@ -78,6 +78,28 @@ public class DeleteTest {
         }
     }
 
+    @Test
+    @DisplayName("Test delete multiple characters")
+    public void testDeleteMultipleCharacters() {
+        homePage.viewInsertCharacter();
+        homePage.enterName("Doe John");
+        homePage.enterClass("Rogue");
+        homePage.enterLevel("3");
+        homePage.submitForm();
+        wait.until(ExpectedConditions.alertIsPresent()).accept();
+        homePage.viewCharacterList();
+
+        listPage.deleteCharacter(0);
+        assertThat(driver.switchTo().alert().getText()).contains("Personagem excluído com sucesso!");
+        wait.until(ExpectedConditions.alertIsPresent()).accept();
+
+        listPage.deleteCharacter(0);
+        assertThat(driver.switchTo().alert().getText()).contains("Personagem excluído com sucesso!");
+        wait.until(ExpectedConditions.alertIsPresent()).accept();
+
+        assertThat(listPage.isCharacterListEmpty()).isTrue();
+    }
+
 
     @AfterEach
     public void tearDown() {
